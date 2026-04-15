@@ -1,0 +1,19 @@
+{
+  "name": "hono-studies",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@hono/standard-validator": "^0.2.2",
+    "@types/pg": "^8.20.0",
+    "hono": "^4.12.12",
+    "pg": "^8.20.0",
+    "zod": "^4.3.6"
+  }
+}
