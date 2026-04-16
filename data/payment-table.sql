@@ -5,8 +5,8 @@ CREATE TABLE payment(
     client_id INT NOT NULL,
     product_id INT NOT NULL,
     amount INT NOT NULL,
-    transaction DECIMAL NOT NULL,
-    exp_date DATE NOT NULL, DEFAULT DATE.NOW()
+    total_price DECIMAL(10, 2) NOT NULL,
+    exp_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES account_superuser(id),
     FOREIGN KEY (staff_id) REFERENCES staff(id),
     FOREIGN KEY (client_id) REFERENCES client(id),
