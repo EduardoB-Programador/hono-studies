@@ -5,7 +5,7 @@ import userRoutes from "./userRoutes";
 import staffRoutes from "./staffRoutes";
 import app from "../..";
 
-app.route("/users", userRoutes)
+app.route("/user", userRoutes)
 app.route("/clients", clientRoutes)
 app.route("/pays", payRoutes)
 app.route("/products", productRoutes)

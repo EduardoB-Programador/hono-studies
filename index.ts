@@ -10,7 +10,7 @@ app.get('/', async (c) => {
     
     //prints all request headers
     //console.log(c.req.header());
-    return c.json({message: "Bem vindo!"})
+    return c.json({message: "Tudo bem Cauan?"})
 })
 
 export default app
