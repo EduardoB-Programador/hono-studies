@@ -1,20 +1,25 @@
-import { genSalt, hash } from "bcrypt";
-
-type password = string
-
-export function hashPass(pass:string):password {
-
-    return ""
-} 
-
-export type superuser = {
+export interface superuser {
     name: string,
     email: string,
-    password?: password,
+    password?: string,
     //image?: File
-    options?: object
+    options?: {}
 }
 
-export type staff = {
+export interface staff {
+
+}
+
+export interface client {
+
+}
+
+export interface payment {
+
+}
+
+
+
+export interface product {
 
 }

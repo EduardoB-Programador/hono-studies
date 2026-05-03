@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import { sValidator } from "@hono/standard-validator";
 import { superUserSchema } from "../repository/schemas";
 
+import { hashPass } from "../utils/methods";
+
 /**
  * Structure of the POST request to the user POST route:
  * 

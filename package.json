@@ -7,15 +7,15 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@hono/standard-validator": "^0.2.2",
     "@types/bcrypt": "^6.0.0",
     "@types/pg": "^8.20.0",
     "bcrypt": "^6.0.0",
-    "hono": "^4.12.12",
+    "hono": "^4.12.16",
     "pg": "^8.20.0",
-    "zod": "^4.3.6"
+    "zod": "^4.4.2"
   }
 }

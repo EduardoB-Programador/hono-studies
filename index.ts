@@ -5,11 +5,11 @@ const app = new Hono()
 
 app.use('/*', cors())
 app.get('/', async (c) => {
-    //Adds a new header to the response
-    //c.header("X-Message", "Header de bem vindo")
+    // Adds a new header to the response
+    c.header("X-Message", "Header de bem vindo")
     
-    //prints all request headers
-    //console.log(c.req.header());
+    // prints all request headers
+    console.log(c.req.header());
     return c.json({message: "Tudo bem Cauan?"})
 })
 
