@@ -18,8 +18,6 @@ export interface payment {
 
 }
 
-
-
 export interface product {
 
 }
