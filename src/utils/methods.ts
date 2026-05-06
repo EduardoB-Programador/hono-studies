@@ -1,5 +1,4 @@
 import { compare, hash } from "bcrypt"
-import { Worker } from "node:worker_threads"
 import { Own } from "./Own"
 
 const own = Own.getInstance()
@@ -13,7 +12,6 @@ type hashResponse = {
 }
 
 export async function hashPass(pass:string): Promise<hashResponse> {
-    //const thread = new Worker("./run.ts")
     const hashedPass = await hash(pass, saltAmount)
     
     if (isHashed(hashedPass)) {
