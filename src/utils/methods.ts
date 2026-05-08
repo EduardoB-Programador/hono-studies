@@ -4,7 +4,7 @@ import { Own } from "./Own"
 const own = Own.getInstance()
 
 const saltAmount = 15
-type Hashed = `$${number}$${number}${string}`
+export type Hashed = `$${number}$${number}${string}`
 
 type hashResponse = {
     type: "error" | "success",

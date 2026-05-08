@@ -1,3 +1,5 @@
+//response types
+
 export interface superuser {
     name: string
     email: string
@@ -32,4 +34,10 @@ export interface product {
     name: string
     price: number
     user: superuser
+}
+
+export type Response = {
+    status: "Success" | "Failure" | "Unknown"
+    data?: any[]
+    error?: string
 }

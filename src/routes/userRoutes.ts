@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { sValidator } from "@hono/standard-validator";
-import { superUserSchema } from "../repository/schemas";
+import { superUserSchema } from "./zodSchemas/schemas";
+
 
 import { hashPass } from "../utils/methods";
 
@@ -27,6 +28,8 @@ const userRoutes = new Hono()
 
 userRoutes.post("/new", sValidator("json", superUserSchema), async c => {
     const reqJson = c.req.valid("json")
+
+
 })
 
 userRoutes.post("/login", sValidator("json", superUserSchema), async c => {
