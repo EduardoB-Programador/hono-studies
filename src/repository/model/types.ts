@@ -10,21 +10,21 @@ export interface superuser {
 export interface staff {
     name: string
     email: string
-    user: superuser
+    user: superuser | number
 }
 
 export interface client {
     name: string
     secNum: string
     address: string
-    user: superuser
+    user: superuser | number
 }
 
 export interface payment {
-    user: superuser
-    staff: staff
-    client: client
-    product: product
+    user: superuser | number
+    staff: staff | number
+    client: client | number
+    product: product | number
     amount:number
     totalPrice:number
     expDate:Date
@@ -33,11 +33,11 @@ export interface payment {
 export interface product {
     name: string
     price: number
-    user: superuser
+    user: superuser | number
 }
 
 export type Response = {
-    status: "Success" | "Failure" | "Unknown"
+    status: "success" | "failure" | "unknown"
     data?: any[]
     error?: string
 }
