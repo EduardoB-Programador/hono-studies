@@ -1,15 +1,13 @@
-import clientRoutes from "./clientRoutes";
-import payRoutes from "./paymentRoutes";
-import productRoutes from "./productRoutes";
-import userRoutes from "./userRoutes";
-import staffRoutes from "./staffRoutes";
-import app from "../..";
-import { Hono, type MiddlewareHandler } from "hono";
-import type { Response } from "../repository/model/types";
+import { Hono, type MiddlewareHandler } from "hono"
+import clientRoutes from "./routes/clientRoutes"
+import payRoutes from "./routes/paymentRoutes"
+import productRoutes from "./routes/productRoutes"
+import staffRoutes from "./routes/staffRoutes"
+import type { Response } from "./repository/model/types"
+
 
 const repoRoutes = new Hono()
 
-repoRoutes.route("/users", userRoutes)
 repoRoutes.route("/clients", clientRoutes)
 repoRoutes.route("/pays", payRoutes)
 repoRoutes.route("/products", productRoutes)

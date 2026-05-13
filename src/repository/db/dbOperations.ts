@@ -1,6 +1,5 @@
 import { Pool } from "pg";
 import type { superuser, client, payment, product, staff } from "../model/types";
-import { BcryptWorkerPool } from "../../utils/pool";
 
 const psqlPool = new Pool({
     host: process.env.HOST_DB ?? "",
@@ -9,7 +8,6 @@ const psqlPool = new Pool({
     password: process.env.PASS_DB ?? "",
     database: process.env.NAME_DB ?? ""
 })
-const workersPool: BcryptWorkerPool = BcryptWorkerPool.getInstance()
 
 type dbUser = superuser & {password: string}
 type dbStaff = staff & {password: string}
@@ -17,8 +15,8 @@ type table = (dbUser | dbStaff | client | payment | product) & {table: "account_
 type data = {
     status: "success" | "failure" | "unknown"
     rowAmount?: number
-    data?: any[]
     message?: string | unknown
+    code?: 201 | 200 | 404 | 500
 }
 
 function getColumns(data:table) {
@@ -34,20 +32,40 @@ function getValues(data:table) {
 }
 
 export async function createNewEntry(entry:table):Promise<data> {
-    if ((entry as dbUser).password)
-        (entry as dbUser).password = await workersPool.hash((entry as dbUser).password)
-        
     const statement = `INSERT INTO ${entry.table} ${getColumns(entry)} VALUES${getValues(entry)};`
     //console.log(statement);
     
     try {
         const data = await psqlPool.query(statement)
         
-        return {status: "success"}
+        return {status: "success", code: 201}
     } catch (err) {
         if (err instanceof Error)
-            return {status: "failure", message: err.message}
-        return {status: "unknown", message: err}
+            return {status: "failure", message: err.message, code: 500}
+        return {status: "unknown", message: err, code: 500}
     }
 }
 
+type rows = {
+    name: string
+    email: string
+    password: string
+    image?: string
+    options?: {}
+}
+
+export async function fetchUser(user:dbUser):Promise<data & {data?: rows[]}> {
+
+    const statement = `SELECT name, email, password, image, options FROM account_superuser WHERE email = '${user.email}' AND active = true;`
+
+    try {
+        const data = (await psqlPool.query(statement)).rows as rows[] | undefined
+        if (!data)
+            return {status: "failure", message: "No entry found", code: 404}
+        return {status: "success", data: data}
+    } catch (err) {
+        if (err instanceof Error) 
+            return {status: "failure", message: err.message, code: 500}
+        return {status: "unknown", message: err, code: 500}
+    }
+}

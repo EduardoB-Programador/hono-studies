@@ -40,4 +40,5 @@ export type Response = {
     status: "success" | "failure" | "unknown"
     data?: any[]
     error?: string
+    token?: string
 }

@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import repoRoutes from "./src/routes/routeGrouping";
+import repoRoutes from "./src/routeGrouping";
+import userRoutes from "./src/userRoutes";
 
 const app = new Hono()
 
@@ -13,6 +14,8 @@ app.get('/', async (c) => {
     const reqHeaders = c.req.header()
     return c.json({message: JSON.stringify(reqHeaders)})
 })
+
+app.route("/", userRoutes)
 
 app.route("/repo", repoRoutes)
 
